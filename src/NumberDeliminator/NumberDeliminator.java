@@ -25,6 +25,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
     @Override
     public String summarizeCollection(Collection<Integer> input) {
 
+        input = input.stream().sorted().collect(Collectors.toList());
         StringBuilder str= new StringBuilder();
         int prev =Integer.MIN_VALUE;
         int count = 0;
@@ -33,6 +34,9 @@ public class NumberDeliminator implements NumberRangeSummarizer {
             if (prev +1 == i){
                 count++;
                 prev = i;
+                continue;
+            }
+            else if(prev == i){
                 continue;
             }
 
