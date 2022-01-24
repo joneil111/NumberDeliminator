@@ -24,7 +24,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
             list2 = list.stream().map(Integer::parseInt).sorted().collect(Collectors.toList());
 
         }catch (NumberFormatException e){//if a decimal number is detected return error message.
-            System.out.println("Please enter only integer Values");
+            System.out.println("Please enter a list of only Valid Integer Values");
         }
 
 
