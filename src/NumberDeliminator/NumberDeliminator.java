@@ -20,9 +20,10 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 //        }
         List<Integer> list2 = null;
         try{
-            list2 = list.stream().map(Integer::parseInt).collect(Collectors.toList());
-            
-        }catch (NumberFormatException e){
+            //this line of code maps the string value in the list to the appropriate integer, sorts the integers in natural order and adds the all to the new list
+            list2 = list.stream().map(Integer::parseInt).sorted().collect(Collectors.toList());
+
+        }catch (NumberFormatException e){//if a decimal number is detected return error message.
             System.out.println("Please enter only integer Values");
         }
 
@@ -32,8 +33,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 
     @Override
     public String summarizeCollection(Collection<Integer> input) {
-        //in case our list is not in ascending order we will sort it by natural order
-        input = input.stream().sorted().collect(Collectors.toList());
+        //input = input.stream().sorted().collect(Collectors.toList());
         //string to hold our comma delimited list
         StringBuilder str= new StringBuilder();
         //starting value for previous num
@@ -65,7 +65,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
                 }
 
             }
-            //if the count is 1 then we know the range is 2 numbers and we dont need to use -
+            //if the count is 1 then we know the range is 2 numbers and we don't need to use -
             else if(count==1){
                 str.append(", ").append(prev).append(", ");
 
