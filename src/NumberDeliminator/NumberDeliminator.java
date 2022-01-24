@@ -24,25 +24,31 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 
     @Override
     public String summarizeCollection(Collection<Integer> input) {
-
+        //in case our list is not in ascending order we will sort it by natural order
         input = input.stream().sorted().collect(Collectors.toList());
+        //string to hold our comma delimited list
         StringBuilder str= new StringBuilder();
+        //starting value for previous num
         int prev =Integer.MIN_VALUE;
-        int count = 0;
+        int count = 0;// count to see if we need to make a range
         for(int i :input){
             //System.out.println(count);
+            //if the previous number is one below the current then we will increment the count
             if (prev +1 == i){
                 count++;
                 prev = i;
                 continue;
             }
+            //if there is a duplicate we will skip it
             else if(prev == i){
                 continue;
             }
 
+            //if the count is greater than one then we will have a range of at least 3 numbers so we can use -
             if ( count > 1){
 
                 str.append("-");
+                //if the number is a negative we will put it in brackets so it is easier to see
                 if (prev<0){
                     str.append("(").append(prev).append(")").append(", ");
                 }
@@ -51,31 +57,34 @@ public class NumberDeliminator implements NumberRangeSummarizer {
                 }
 
             }
-
+            //if the count is 1 then we know the range is 2 numbers and we dont need to use -
             else if(count==1){
                 str.append(", ").append(prev).append(", ");
 
             }
-
+            //if our previous is not the base value we can add a , to the end
             else if(prev != Integer.MIN_VALUE) {
                 str.append(", ");
             }
+            //finally we reset the count and append the number to the string
             count=0;
             str.append(i);
             prev = i;
 
         }
 
+        //if the loop is done and we still have a count above one we need to add a range
         if ( count > 1){
 
             str.append("-");
             str.append(prev);
         }
-
+        //if the loop ends and we have a count of one we need to add the previous number to the string
         else if(count==1){
             str.append(", ").append(prev);
         }
 
+        //return the completed string
         return str.toString();
     }
 }
