@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NumberDeliminator implements NumberRangeSummarizer {
+
+
+
     @Override
     public Collection<Integer> collect(String input) {
 
@@ -36,16 +39,22 @@ public class NumberDeliminator implements NumberRangeSummarizer {
             if ( count > 1){
 
                 str.append("-");
-                str.append(prev).append(",");
+                if (prev<0){
+                    str.append("(").append(prev).append(")").append(", ");
+                }
+                else{
+                    str.append(prev).append(", ");
+                }
+
             }
 
             else if(count==1){
-                str.append(",").append(prev).append(",");
+                str.append(", ").append(prev).append(", ");
 
             }
 
             else if(prev != Integer.MIN_VALUE) {
-                str.append(",");
+                str.append(", ");
             }
             count=0;
             str.append(i);
@@ -60,7 +69,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
         }
 
         else if(count==1){
-            str.append(",").append(prev);
+            str.append(", ").append(prev);
         }
 
         return str.toString();
