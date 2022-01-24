@@ -1,14 +1,18 @@
 package NumberDeliminator;
 
+import java.util.Collection;
+
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
         NumberDeliminator n = new NumberDeliminator();
+        Collection<Integer> collection =n.collect("31, 3,1,1,3,3,22,24, 1, 14,13,22,24,21,7,8,6,23,15,12");
+        if (collection !=null){
+            String s = n.summarizeCollection(collection);
+            System.out.println(s);
+        }
 
-
-        String s = n.summarizeCollection(n.collect("31, 3,1,1,3,3,22,24, 1, 14,13,22,24,21,7,8,6,23,15,12"));
-        System.out.println(s);
     }
 }
 /*

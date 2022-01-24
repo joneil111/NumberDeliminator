@@ -18,8 +18,16 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 //        for(int i : s){
 //            System.out.println(i);            //Display the list to check if it is correct
 //        }
+        List<Integer> list2 = null;
+        try{
+            list2 = list.stream().map(Integer::parseInt).collect(Collectors.toList());
+            
+        }catch (NumberFormatException e){
+            System.out.println("Please enter only integer Values");
+        }
 
-        return list.stream().map(Integer::parseInt).collect(Collectors.toList());
+
+        return list2;
     }
 
     @Override
