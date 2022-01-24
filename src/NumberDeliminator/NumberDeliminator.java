@@ -27,7 +27,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
         int prev =Integer.MIN_VALUE;
         int count = 0;
         for(int i :input){
-
+            //System.out.println(count);
             if (prev +1 == i){
                 count++;
                 prev = i;
@@ -38,24 +38,30 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 
                 str = str+"-";
                 str = str+prev+",";
-                count =0;
             }
+
+            else if(count==1){
+                str = str+","+prev+",";
+
+            }
+
             else if(prev != Integer.MIN_VALUE) {
                 str = str + ",";
             }
-            else if(count==1){
-                str = str+prev+",";
-                count = 0;
-            }
-
             count=0;
             str = str +i;
             prev = i;
 
         }
 
-        if (true && count > 1){
-            str = str+"-"+prev;
+        if ( count > 1){
+
+            str = str+"-";
+            str = str+prev;
+        }
+
+        else if(count==1){
+            str = str+","+prev;
         }
 
         return str;
