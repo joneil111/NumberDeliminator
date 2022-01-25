@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class NumberDeliminator implements NumberRangeSummarizer {
 
 
-
+    //method runs is O(n) time
     @Override
     public Collection<Integer> collect(String input) {
 
@@ -26,13 +26,15 @@ public class NumberDeliminator implements NumberRangeSummarizer {
             list2 = list.stream().map(Integer::parseInt).sorted().collect(Collectors.toList());
 
         }catch (NumberFormatException e){//if a non Integer Value is detected is detected return error message.
-            System.out.println("Please enter a list of only Valid Integer Values");
+            System.out.println("Please enter a list of only Valid Integer Values\n");
         }
 
 
         return list2;
     }
 
+
+    //method runs is O(n) time
     @Override
     public String summarizeCollection(Collection<Integer> input) {
 
