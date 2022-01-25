@@ -34,7 +34,7 @@ public class Main {
         //count for the questions
         int count = 1;
 
-        //read inputs for the file
+        //read inputs from the file
         try{
             File myfile = new File("input.txt");
             Scanner myScan = new Scanner(myfile);
@@ -45,7 +45,7 @@ public class Main {
 
                 //if the collection variable is null we know that there was an error with the input list so we dont need to display anything
                 if (collection !=null){
-                    //call the summarizecollection method and display the summarised list
+                    //call the summarizecollection method and display the summarized list
                     String s = numDel.summarizeCollection(collection);
                     System.out.print(count+")\t");
                     count++;
