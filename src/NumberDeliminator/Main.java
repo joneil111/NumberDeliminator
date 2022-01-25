@@ -1,17 +1,36 @@
 package NumberDeliminator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Collection;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        NumberDeliminator n = new NumberDeliminator();
-        Collection<Integer> collection =n.collect("");
-        if (collection !=null){
-            String s = n.summarizeCollection(collection);
-            System.out.println(s);
+        //creating instance of NumberDeliminator class.
+        NumberDeliminator numDel = new NumberDeliminator();
+        try{
+            File myfile = new File("input.txt");
+            Scanner myScan = new Scanner(myfile);
+            while  (myScan.hasNextLine()){
+                String data = myScan.nextLine();
+                Collection<Integer> collection =numDel.collect(data);
+                if (collection !=null){
+                    String s = numDel.summarizeCollection(collection);
+                    System.out.println(s+"\n");
+                }
+            }
+
+        }catch (FileNotFoundException e){
+            System.out.println("File Does Not Exist.");
+            e.printStackTrace();
         }
+
+
+
+
 
     }
 }
