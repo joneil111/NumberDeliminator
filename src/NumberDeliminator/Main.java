@@ -1,4 +1,3 @@
-
 package NumberDeliminator;
 
 import java.io.File;
