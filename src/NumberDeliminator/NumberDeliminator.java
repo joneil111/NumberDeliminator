@@ -12,7 +12,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
     @Override
     public Collection<Integer> collect(String input) {
 
-        String[] split = input.split("\s*,\s*");//this regex will split the numbers by the , regardless of a space before or after the ,
+        String[] split = input.split("\s*,\s*");//this regex will split the numbers by the "," regardless of a space before or after the ","
         List<String> list = Arrays.asList(split);
 
 //        for(int i : s){
@@ -25,7 +25,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
             //this line of code maps the string value in the list to the appropriate integer values, sorts the integers in natural order and adds them all to the new list
             list2 = list.stream().map(Integer::parseInt).sorted().collect(Collectors.toList());
 
-        }catch (NumberFormatException e){//if a non Integer Value is detected is detected return error message.
+        }catch (NumberFormatException e){//if a non Integer Value is detected return a error message.
             System.out.println("Please enter a list of only Valid Integer Values\n");
         }
 
@@ -45,7 +45,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
         int count = 0;// count to see if we need to make a range
         for(int i :input){
             //System.out.println(count);
-            //if the previous number is one below the current then we will increment the count
+            //if the previous number is one below the current then we will increment the count ie we are seeing numbers in sequence
             if (prev +1 == i){
                 count++;
                 prev = i;
@@ -56,7 +56,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
                 continue;
             }
 
-            //if the count is greater than one then we will have a range of at least 3 numbers so we can use -
+            //if the count is greater than one then we will have a range of at least 3 numbers(ie 1,2,3) so we can use "-"
             if ( count > 1){
 
                 str.append("-");
@@ -69,12 +69,12 @@ public class NumberDeliminator implements NumberRangeSummarizer {
                 }
 
             }
-            //if the count is 1 then we know the range is 2 numbers and we don't need to use -
+            //if the count is 1 then we know the range is 2 numbers(ie 4,5) and we don't need to use "-"
             else if(count==1){
                 str.append(", ").append(prev).append(", ");
 
             }
-            //if our previous is not the base value we can add a , to the end
+            //if our previous is not the base value we can add a "," to the end
             else if(prev != Integer.MIN_VALUE) {
                 str.append(", ");
             }
