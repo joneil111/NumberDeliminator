@@ -18,12 +18,14 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 //        for(int i : s){
 //            System.out.println(i);            //Display the list to check if it is correct
 //        }
+
+        //initialize our new integer list
         List<Integer> list2 = null;
         try{
-            //this line of code maps the string value in the list to the appropriate integer, sorts the integers in natural order and adds the all to the new list
+            //this line of code maps the string value in the list to the appropriate integer values, sorts the integers in natural order and adds them all to the new list
             list2 = list.stream().map(Integer::parseInt).sorted().collect(Collectors.toList());
 
-        }catch (NumberFormatException e){//if a decimal number is detected return error message.
+        }catch (NumberFormatException e){//if a non Integer Value is detected is detected return error message.
             System.out.println("Please enter a list of only Valid Integer Values");
         }
 
@@ -85,9 +87,16 @@ public class NumberDeliminator implements NumberRangeSummarizer {
         if ( count > 1){
 
             str.append("-");
-            str.append(prev);
+            //if the number is a negative we will put it in brackets so it is easier to see
+            if (prev<0){
+                str.append("(").append(prev).append(")");
+            }
+            else{
+                str.append(prev);
+            }
+
         }
-        //if the loop ends and we have a count of one we need to add the previous number to the string
+        //if the loop ends and we have a count of one we need to add the previous number to the string since there is still a outstanding integer
         else if(count==1){
             str.append(", ").append(prev);
         }
