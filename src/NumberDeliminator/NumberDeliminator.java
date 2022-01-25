@@ -33,7 +33,7 @@ public class NumberDeliminator implements NumberRangeSummarizer {
 
     @Override
     public String summarizeCollection(Collection<Integer> input) {
-        //input = input.stream().sorted().collect(Collectors.toList());
+
         //string to hold our comma delimited list
         StringBuilder str= new StringBuilder();
         //starting value for previous num
